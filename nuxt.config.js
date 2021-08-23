@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'part-time-jobs',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'pl'
     },
     meta: [
       { charset: 'utf-8' },
@@ -15,12 +15,13 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "true" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap" }
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700;900&display=swap" }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~assets/scss/global.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -36,7 +37,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/style-resources'
   ],
+
+  styleResources: {
+    scss: ['./assets/scss/*.scss']
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
