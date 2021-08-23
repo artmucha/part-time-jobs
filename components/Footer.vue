@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <h1>Footer</h1>
+    <NuxtLink to="/" class="footer__logo"><h2>PartTimeJobs</h2></NuxtLink>
   </footer>
 </template>
 
@@ -15,7 +15,7 @@
 
   &__logo {
     color: rgba(255, 255, 255, 0.8);
-    h1 {
+    h2 {
       font-size: 22px;
     }
   }
