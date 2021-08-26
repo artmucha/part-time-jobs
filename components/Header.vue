@@ -1,7 +1,12 @@
 <template>
   <header class="header">
-    <NuxtLink to="/" class="header__logo"><h1>PartTimeJobs</h1></NuxtLink>
-    <NuxtLink to="/dodaj" class="header__action">Dodaj</NuxtLink>
+    <div class="header__top">
+      <NuxtLink to="/" class="header__logo"><h1>PartTimeJobs</h1></NuxtLink>
+      <NuxtLink to="/dodaj" class="header__action">Dodaj</NuxtLink>
+    </div>
+    <div class="header__bottom">
+      <Filters />
+    </div>
   </header>
 </template>
 
@@ -11,13 +16,21 @@ export default {};
 
 <style lang="scss">
 .header {
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: #0e1926;
   color: rgba(255, 255, 255, 0.8);
-  border-bottom: 1px solid $grey;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid $grey;
+  }
+
+  &__bottom {
+    padding: 0 15px;
+    border-bottom: 1px solid $grey;
+  }
 
   &__logo {
     color: rgba(255, 255, 255, 0.8);
