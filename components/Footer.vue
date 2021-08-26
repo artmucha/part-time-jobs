@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #0e1926;
+  background: $black;
   color: rgba(255, 255, 255, 0.8);
 
   &__logo {

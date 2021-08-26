@@ -16,7 +16,7 @@ export default {};
 
 <style lang="scss">
 .header {
-  background: #0e1926;
+  background: $black;
   color: rgba(255, 255, 255, 0.8);
 
   &__top {

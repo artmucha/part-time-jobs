@@ -1,6 +1,6 @@
 /// vars
 $white: #ffffff;
-$black: #212121;
+$black: #0e1926;
 $grey: #3c3c3c;
 
 * {
@@ -8,6 +8,10 @@ $grey: #3c3c3c;
   margin: 0;
   box-sizing: border-box;
   font-family: "Nunito", sans-serif;
+}
+
+body {
+  background-color: rgba(14, 25, 38, 0.05);
 }
 
 a {

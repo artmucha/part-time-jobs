@@ -37,6 +37,7 @@ export default {
   margin-bottom: 15px;
   padding: 15px;
   border-radius: 6px;
+  background-color: $white;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 5px 0 rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -75,7 +76,7 @@ export default {
     text-overflow: ellipsis;
 
     @media (min-width: 768px) {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
 
