@@ -115,6 +115,8 @@
 </template>
 
 <script>
+import { getDatabase, ref, push, set } from "firebase/database";
+
 export default {
   data() {
     return {
@@ -422,7 +424,11 @@ export default {
       const date = new Date().getTime();
       const slug = `${title}-${company}-${date}`;
       this.formData.slug = slug;
-      console.log(this.formData);
+
+      const db = getDatabase();
+      const postListRef = ref(db, "posts");
+      const newPostRef = push(postListRef);
+      set(newPostRef, this.formData);
     }
   }
 };
