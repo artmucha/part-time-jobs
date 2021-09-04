@@ -1,12 +1,20 @@
 <template>
-  <NuxtLink :to="post.slug">
+  <NuxtLink :to="`ogloszenie/${post.slug}`">
     <article class="card">
       <header class="card__header">
         <h2 class="card__title">{{ post.title }}</h2>
-        <h3 class="card__salary">{{ post.salary }}</h3>
+        <h3 class="card__salary">
+          {{ post.min_salary }} - {{ post.max_salary }} PLN /
+          {{ post.salary_per }}
+        </h3>
       </header>
       <div class="card__body">
-        <h3 class="card__company">{{ post.company }}</h3>
+        <div>
+          <h3 class="card__company">{{ post.company }}</h3>
+          <h3 class="card__experience">
+            <span>Poziom: </span>{{ post.experience }}
+          </h3>
+        </div>
         <div class="card__requirements">
           <span
             class="card__requirements_item"
@@ -89,6 +97,16 @@ export default {
     color: $grey;
     font-size: 12px;
     white-space: nowrap;
+  }
+
+  &__experience {
+    margin-top: 10px;
+    font-size: 12px;
+    color: $black;
+    span {
+      color: $grey;
+      font-weight: 400;
+    }
   }
 
   &__requirements {

@@ -15,16 +15,16 @@
       <label class="label">
         Doświadczenie*
         <select name="experience" id="experience" @change="setValue">
-          <option value="junior">Junior</option>
-          <option value="mid">Mid</option>
-          <option value="senior">Senior</option>
+          <option value="Junior">Junior</option>
+          <option value="Mid">Mid</option>
+          <option value="Senior">Senior</option>
         </select>
       </label>
 
       <label class="label">
         Główna technologia / język*
         <select name="language" id="language" @change="setValue">
-          <option v-for="lang in language" :value="lang.value">{{
+          <option v-for="lang in language" :value="lang.label">{{
             lang.label
           }}</option>
         </select>
@@ -36,7 +36,7 @@
           <input
             type="checkbox"
             name="requirements"
-            :value="lang.value"
+            :value="lang.label"
             @change="setValue"
           />
           {{ lang.label }}
@@ -409,7 +409,7 @@ export default {
       }
     },
 
-    submit() {
+    async submit() {
       let { title, company } = this.formData;
       title = title
         .split(" ")
@@ -422,6 +422,14 @@ export default {
       const date = new Date().getTime();
       const slug = `${title}-${company}-${date}`;
       this.formData.slug = slug;
+
+      await fetch("/api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(this.formData)
+      });
     }
   }
 };

@@ -4,49 +4,38 @@
       <header class="post__header">
         <div>
           <div>
-            <h2 class="post__title">Front-end Developer</h2>
-            <time class="post__date" datetime="12.02.2021">
-              Dodano: 12.02.2021
-            </time>
+            <h2 class="post__title">{{ post.title }}</h2>
           </div>
           <div class="post__salary">
-            <span>50</span> - <span>100</span> PLN / godzina
+            <span>{{ post.min_salary }}</span> -
+            <span>{{ post.max_salary }}</span> PLN / {{ post.salary_per }}
           </div>
         </div>
         <div>
-          <h3 class="post__category"><span>Kategoria:</span> JavaScript</h3>
-          <h3 class="post__experience"><span>Doświadczenie:</span> Senior</h3>
+          <h3 class="post__category">
+            <span>Kategoria: </span>{{ post.language }}
+          </h3>
+          <h3 class="post__experience">
+            <span>Doświadczenie: </span>{{ post.experience }}
+          </h3>
         </div>
       </header>
       <div class="post__body">
         <h3 class="post__subtitle">Wymagania</h3>
         <div class="post__requirements">
-          <span class="post__requirements_item">javascript</span>
-          <span class="post__requirements_item">react</span>
-          <span class="post__requirements_item">vuejs</span>
-          <span class="post__requirements_item">git</span>
+          <span
+            class="post__requirements_item"
+            v-for="item in post.requirements"
+            >{{ item }}</span
+          >
         </div>
       </div>
       <div class="post__body post__details">
-        <p>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
-          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
-          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
-          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
-          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
-          qui dolorem eum fugiat quo voluptas nulla pariatur?
-        </p>
+        <p v-html="post.description"></p>
       </div>
       <div class="post__body">
         <h4>
-          Wyślij CV: <a href="mailto: email@example.com">email@example.com</a>
+          Wyślij CV: <a :href="`mailto: ${post.email}`">{{ post.email }}</a>
         </h4>
       </div>
     </article>
@@ -54,7 +43,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  async asyncData({ params }) {
+    const res = await fetch(`http://localhost:3000/api/posts/${params.slug}`);
+    const post = await res.json();
+    return { post };
+  }
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,13 +1,19 @@
 <template>
   <div class="container">
     <template v-for="post in posts">
-      <Card :key="post.id" :post="post" />
+      <Card :key="post.title" :post="post" />
     </template>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  async asyncData() {
+    const res = await fetch(`http://localhost:3000/api/posts`);
+    const posts = await res.json();
+    return { posts };
+  }
+};
 </script>
 
 <style lang="scss" scoped>
