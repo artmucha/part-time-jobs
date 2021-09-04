@@ -33,9 +33,13 @@
       <div class="post__body post__details">
         <p v-html="post.description"></p>
       </div>
-      <div class="post__body">
+      <div class="post__body post__contact">
         <h4>
-          Wyślij CV: <a :href="`mailto: ${post.email}`">{{ post.email }}</a>
+          Wyślij CV:
+          <a v-if="showEmail" :href="`mailto: ${post.email}`">{{
+            post.email
+          }}</a>
+          <p v-else @click="showEmail = !showEmail">pokaż email</p>
         </h4>
       </div>
     </article>
@@ -44,6 +48,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      showEmail: false
+    };
+  },
+
   async asyncData({ params }) {
     const res = await fetch(`http://localhost:3000/api/posts/${params.slug}`);
     const post = await res.json();
@@ -142,6 +152,24 @@ export default {
       border: 1px solid $grey;
       text-overflow: ellipsis;
       text-transform: lowercase;
+    }
+  }
+
+  &__details {
+    @media (min-width: 768px) {
+      p {
+        display: inline-block;
+        width: 70%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  &__contact {
+    p {
+      display: inline-block;
+      cursor: pointer;
     }
   }
 }
