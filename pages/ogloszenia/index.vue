@@ -8,8 +8,13 @@
 
 <script>
 export default {
-  async asyncData() {
-    const res = await fetch(`http://localhost:3000/api/posts`);
+  watchQuery: ["experience"],
+
+  async asyncData({ query }) {
+    const exp = query.experience ? query.experience : "";
+    const res = await fetch(
+      `http://localhost:3000/api/posts?experience=${exp}`
+    );
     const posts = await res.json();
     return { posts };
   }

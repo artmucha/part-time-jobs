@@ -4,8 +4,9 @@
       <NuxtLink
         v-for="exp in experience"
         :key="exp.id"
-        :to="exp.value"
+        :to="`/ogloszenia${link}?experience=${exp.value}`"
         class="filter__item"
+        @click.native="setParameters(exp.value)"
       >
         <span>
           <img :src="require(`~/assets/img/${exp.icon}.svg`)" />
@@ -15,12 +16,13 @@
     </div>
     <div class="filter">
       <NuxtLink
-        v-for="exp in language"
-        :key="exp.id"
-        :to="exp.value"
+        v-for="lang in language"
+        :key="lang.id"
+        :to="`/ogloszenia${lang.value}${param}`"
         class="filter__item"
+        @click.native="setLink(lang.value)"
       >
-        {{ exp.label }}
+        {{ lang.label }}
       </NuxtLink>
     </div>
   </div>
@@ -30,6 +32,8 @@
 export default {
   data() {
     return {
+      link: "",
+      param: "",
       experience: [
         {
           id: 1,
@@ -55,60 +59,69 @@ export default {
         {
           id: 0,
           label: "Wszystkie",
-          value: "all"
+          value: ""
         },
         {
           id: 1,
           label: "JavaScript",
-          value: "javascript"
+          value: "/javascript"
         },
         {
           id: 2,
           label: "PHP",
-          value: "php"
+          value: "/php"
         },
         {
           id: 3,
           label: "Java",
-          value: "java"
+          value: "/java"
         },
         {
           id: 4,
           label: "Python",
-          value: "python"
+          value: "/python"
         },
         {
           id: 5,
           label: "C",
-          value: "c"
+          value: "/c"
         },
         {
           id: 6,
           label: "Ruby",
-          value: "ruby"
+          value: "/ruby"
         },
         {
           id: 7,
           label: ".NET",
-          value: "net"
+          value: "/net"
         },
         {
           id: 8,
           label: "Go",
-          value: "golang"
+          value: "/golang"
         },
         {
           id: 9,
           label: "Scala",
-          value: "scala"
+          value: "/scala"
         },
         {
           id: 10,
           label: "Mobile",
-          value: "mobile"
+          value: "/mobile"
         }
       ]
     };
+  },
+
+  methods: {
+    setLink(value) {
+      this.link = `${value}`;
+    },
+    setParameters(value) {
+      this.param = `?experience=${value}`;
+    }
   }
 };
 </script>

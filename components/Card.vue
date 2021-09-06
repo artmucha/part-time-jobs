@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="`ogloszenie/${post.slug}`">
+  <NuxtLink :to="`/ogloszenie/${post.slug}`">
     <article class="card">
       <header class="card__header">
         <h2 class="card__title">{{ post.title }}</h2>

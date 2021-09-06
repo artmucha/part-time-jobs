@@ -15,16 +15,16 @@
       <label class="label">
         Doświadczenie*
         <select name="experience" id="experience" @change="setValue">
-          <option value="Junior">Junior</option>
-          <option value="Mid">Mid</option>
-          <option value="Senior">Senior</option>
+          <option value="junior">Junior</option>
+          <option value="mid">Mid</option>
+          <option value="senior">Senior</option>
         </select>
       </label>
 
       <label class="label">
         Główna technologia / język*
         <select name="language" id="language" @change="setValue">
-          <option v-for="lang in language" :value="lang.label">{{
+          <option v-for="lang in language" :value="lang.value">{{
             lang.label
           }}</option>
         </select>
@@ -36,7 +36,7 @@
           <input
             type="checkbox"
             name="requirements"
-            :value="lang.label"
+            :value="lang.value"
             @change="setValue"
           />
           {{ lang.label }}
