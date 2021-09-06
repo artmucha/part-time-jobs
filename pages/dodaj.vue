@@ -32,14 +32,14 @@
 
       <label class="label">Wymagania</label>
       <div class="form__requirements">
-        <label v-for="lang in language">
+        <label v-for="tech in technology">
           <input
             type="checkbox"
             name="requirements"
-            :value="lang.value"
+            :value="tech.value"
             @change="setValue"
           />
-          {{ lang.label }}
+          {{ tech.label }}
         </label>
       </div>
 
@@ -119,6 +119,59 @@ export default {
   data() {
     return {
       language: [
+        {
+          id: 1,
+          label: "JavaScript",
+          value: "javascript"
+        },
+        {
+          id: 2,
+          label: "PHP",
+          value: "php"
+        },
+        {
+          id: 3,
+          label: "Java",
+          value: "java"
+        },
+        {
+          id: 4,
+          label: "Python",
+          value: "python"
+        },
+        {
+          id: 5,
+          label: "C",
+          value: "c"
+        },
+        {
+          id: 6,
+          label: "Ruby",
+          value: "ruby"
+        },
+        {
+          id: 7,
+          label: ".NET",
+          value: "net"
+        },
+        {
+          id: 8,
+          label: "Go",
+          value: "golang"
+        },
+        {
+          id: 9,
+          label: "Scala",
+          value: "scala"
+        },
+        {
+          id: 10,
+          label: "Mobile",
+          value: "mobile"
+        }
+      ],
+
+      technology: [
         {
           id: 0,
           label: "Angular",
