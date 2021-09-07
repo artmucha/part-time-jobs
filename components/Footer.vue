@@ -1,15 +1,27 @@
 <template>
   <footer class="footer">
-    <NuxtLink to="/" class="footer__logo"><h2>PartTimeJobs</h2></NuxtLink>
+    <div>
+      <NuxtLink to="/" class="footer__logo"><h2>PartTimeJobs</h2></NuxtLink>
+      <p>
+        PartTimeJobs.it to pierwszy serwis z ofertami pracy tymczasowej,
+        dodatkowej i zleceniami dla programistów.
+      </p>
+    </div>
+    <div>
+      <strong>O serwisie</strong>
+      <NuxtLink to="/regulamin">Regulamin</NuxtLink>
+      <NuxtLink to="/polityka">Polityka prywatności</NuxtLink>
+    </div>
+    <div>
+      <strong>Kontakt</strong>
+      <a href="mailto:kontakt@parttimejobs.it">kontakt@parttimejobs.it</a>
+    </div>
   </footer>
 </template>
 
 <style lang="scss">
 .footer {
   padding: 20px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   background: $black;
   color: rgba(255, 255, 255, 0.8);
 
@@ -17,6 +29,24 @@
     color: rgba(255, 255, 255, 0.8);
     h2 {
       font-size: 22px;
+    }
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  a {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  @media (min-width: 992px) {
+    display: flex;
+    div {
+      max-width: 300px;
+      margin-right: 50px;
     }
   }
 }
