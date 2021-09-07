@@ -12,8 +12,9 @@ export default {
 
   async asyncData({ params, query }) {
     const exp = query.experience ? query.experience : "";
+    const lang = params.language ? params.language : "";
     const res = await fetch(
-      `http://localhost:3000/api/posts/filtered/${params.language}?experience=${exp}`
+      `http://localhost:3000/api/posts?language=${lang}&experience=${exp}`
     );
     const posts = await res.json();
     return { posts };

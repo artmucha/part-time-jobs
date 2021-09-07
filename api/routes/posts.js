@@ -5,7 +5,6 @@ const router = Router();
 
 router.get('/posts', postController.list);
 router.get('/posts/:slug', postController.show);
-router.get('/posts/filtered/:language', postController.listFiltered);
 router.post('/posts', postController.create);
 
 module.exports = router;

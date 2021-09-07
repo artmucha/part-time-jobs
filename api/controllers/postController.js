@@ -3,29 +3,16 @@ const validator = require('express-validator');
 
 // Get all
 module.exports.list = function (req, res, next) {
+  const language = req.query.language ? { 'language' : req.query.language } : {};
   const experience = req.query.experience ? { 'experience': req.query.experience } : {};
-  Post.find({...experience}, function(err, posts){
-    if(err) {
-      return res.status(500).json({
-        message: 'Error getting records.'
-      });
-    }
-    return res.status(200).json(posts);
-  });
-}
-
-
-// Get filtered
-module.exports.listFiltered = function (req, res, next) {
-  const language = req.params.language ? { 'language' : req.params.language } : {};
-  const experience = req.query.experience ? { 'experience': req.query.experience } : {};
+  console.log(language)
   Post.find({...language, ...experience}, function(err, posts){
     if(err) {
       return res.status(500).json({
         message: 'Error getting records.'
       });
     }
-    return res.json(posts);
+    return res.status(200).json(posts);
   });
 }
 
