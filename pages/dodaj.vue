@@ -44,7 +44,7 @@
       </div>
 
       <label class="label">
-        Opis stanowiska
+        Opis stanowiska*
         <textarea name="description" id="description" @change="setValue">
         </textarea>
       </label>
@@ -109,7 +109,13 @@
         Zapoznałem się z regulaminem i akceptuję jego zapisy.
       </label>
 
-      <button class="form__submit" @click.prevent="submit">Dodaj</button>
+      <button :class="['form__submit', status]" @click.prevent="submit">
+        <span>{{ buttonText }}</span>
+      </button>
+
+      <ul class="form__errors" v-if="errors.length">
+        <li v-for="error in errors">{{ error.msg }}</li>
+      </ul>
     </form>
   </div>
 </template>
@@ -118,6 +124,9 @@
 export default {
   data() {
     return {
+      buttonText: "Dodaj",
+      status: "",
+      errors: [],
       language: [
         {
           id: 1,
@@ -457,32 +466,60 @@ export default {
             item => item != e.target.value
           );
         }
+      } else if (e.target.name == "regulations" && e.target.checked) {
+        this.formData = {
+          ...this.formData,
+          [e.target.name]: !!e.target.value
+        };
       } else {
         this.formData = { ...this.formData, [e.target.name]: e.target.value };
       }
     },
 
     async submit() {
-      let { title, company } = this.formData;
-      title = title
-        .split(" ")
-        .join("-")
-        .toLowerCase();
-      company = company
-        .split(" ")
-        .join("-")
-        .toLowerCase();
-      const date = new Date().getTime();
-      const slug = `${title}-${company}-${date}`;
-      this.formData.slug = slug;
+      this.status = "pending";
+      try {
+        let { title, company } = this.formData;
+        title = title
+          .split(" ")
+          .join("-")
+          .toLowerCase();
+        company = company
+          .split(" ")
+          .join("-")
+          .toLowerCase();
+        const date = new Date().getTime();
+        const slug = `${title}-${company}-${date}`;
+        this.formData.slug = slug;
 
-      await fetch("/api/posts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(this.formData)
-      });
+        const res = await fetch("/api/posts", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(this.formData)
+        });
+
+        const { errors } = await res.json();
+        if (errors) {
+          this.errors = errors;
+          this.status = "error";
+          this.buttonText = "Błąd!";
+          setTimeout(() => {
+            this.status = "";
+            this.buttonText = "Dodaj";
+          }, 2000);
+        } else {
+          this.status = "success";
+          this.buttonText = "Dodano";
+          setTimeout(() => {
+            this.$router.push("/");
+          }, 2000);
+        }
+      } catch (error) {
+        this.status = "error";
+        this.buttonText = "Błąd!";
+      }
     }
   }
 };
@@ -563,21 +600,78 @@ export default {
 
   &__submit {
     width: 200px;
+    height: 44px;
     margin: 20px auto 0 auto;
     padding: 10px 20px;
-    color: $white;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: "Nunito", sans-serif;
     background-color: #e91e63;
-    border: 1px solid #e91e63;
+    border: 0;
     border-radius: 50px;
     cursor: pointer;
     transition: ease-in-out 0.2s background-color;
+    position: relative;
 
     &:hover {
       background-color: darken(#e91e63, 10%);
     }
+
+    span {
+      color: $white;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: "Nunito", sans-serif;
+    }
+
+    &.pending {
+      span {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        border: 4px solid transparent;
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: button-loading-spinner 1s ease infinite;
+      }
+    }
+
+    &.success {
+      background-color: #22bb33;
+    }
+
+    &.error {
+      background-color: #bb2124;
+    }
+  }
+
+  &__errors {
+    margin-top: 20px;
+
+    li {
+      display: block;
+      color: #bb2124;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
   }
 }
 </style>

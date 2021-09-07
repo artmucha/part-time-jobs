@@ -59,12 +59,12 @@ module.exports.create = [
   validator.body('min_salary', 'Nie zapomnij o widełkach ;)').isLength({ min: 1 }),
   validator.body('max_salary', 'Nie zapomnij o widełkach ;)').isLength({ min: 1 }),
   validator.body('email', 'Podaj email, na który można wysłać CV').isLength({ min: 1 }),
-  validator.body('regulations', 'Zaakceptuj warunki serwisu').notEmpty(),
+  validator.body('regulations', 'Zaakceptuj warunki serwisu').matches("true"),
 
   function(req, res) {
     const errors = validator.validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.mapped() });
+      return res.status(422).json(errors);
     }
 
     let post = new Post(req.body);
