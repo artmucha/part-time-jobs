@@ -5,7 +5,6 @@ const validator = require('express-validator');
 module.exports.list = function (req, res, next) {
   const language = req.query.language ? { 'language' : req.query.language } : {};
   const experience = req.query.experience ? { 'experience': req.query.experience } : {};
-  console.log(language)
   Post.find({...language, ...experience}, function(err, posts){
     if(err) {
       return res.status(500).json({
