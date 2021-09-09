@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  async asyncData() {
-    const res = await fetch(`http://localhost:3000/api/posts`);
+  async asyncData({ $config: { baseURL } }) {
+    const res = await fetch(`${baseURL}/api/posts`);
     const posts = await res.json();
     return { posts };
   }
@@ -20,6 +20,7 @@ export default {
 .container {
   width: 100%;
   max-width: 1000px;
+  min-height: calc(100vh - 296px);
   margin: 0 auto;
   padding: 15px;
 }

@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'part-time-jobs',
+    title: 'PartTimeJobs',
     htmlAttrs: {
       lang: 'pl'
     },
@@ -51,4 +51,9 @@ export default {
   serverMiddleware: [
     '~/api/index'
   ],
+
+  // Configs
+  publicRuntimeConfig: {
+    baseURL: process.env.BASE_URL,
+  },
 }

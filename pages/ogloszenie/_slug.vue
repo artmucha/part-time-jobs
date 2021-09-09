@@ -54,8 +54,8 @@ export default {
     };
   },
 
-  async asyncData({ params }) {
-    const res = await fetch(`http://localhost:3000/api/posts/${params.slug}`);
+  async asyncData({ params, $config: { baseURL } }) {
+    const res = await fetch(`${baseURL}/api/posts/${params.slug}`);
     const post = await res.json();
     return { post };
   }
@@ -66,6 +66,7 @@ export default {
 .container {
   width: 100%;
   max-width: 1000px;
+  min-height: calc(100vh - 296px);
   margin: 0 auto;
   padding: 15px;
 }

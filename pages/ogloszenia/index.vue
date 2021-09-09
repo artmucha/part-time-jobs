@@ -10,11 +10,9 @@
 export default {
   watchQuery: ["experience"],
 
-  async asyncData({ query }) {
+  async asyncData({ query, $config: { baseURL } }) {
     const exp = query.experience ? query.experience : "";
-    const res = await fetch(
-      `http://localhost:3000/api/posts?experience=${exp}`
-    );
+    const res = await fetch(`${baseURL}/api/posts?experience=${exp}`);
     const posts = await res.json();
     return { posts };
   }
@@ -25,6 +23,7 @@ export default {
 .container {
   width: 100%;
   max-width: 1000px;
+  min-height: calc(100vh - 296px);
   margin: 0 auto;
   padding: 15px;
 }

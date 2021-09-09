@@ -3,18 +3,17 @@
     <div>
       <NuxtLink to="/" class="footer__logo"><h2>PartTimeJobs</h2></NuxtLink>
       <p>
-        PartTimeJobs.it to pierwszy serwis z ofertami pracy tymczasowej,
-        dodatkowej i zleceniami dla programistów.
+        PartTimeJobs.pl to pierwszy serwis z ofertami pracy tymczasowej,
+        dodatkowej oraz zleceniami dla programistów.
       </p>
     </div>
     <div>
       <strong>O serwisie</strong>
       <NuxtLink to="/regulamin">Regulamin</NuxtLink>
-      <NuxtLink to="/polityka">Polityka prywatności</NuxtLink>
     </div>
     <div>
       <strong>Kontakt</strong>
-      <a href="mailto:kontakt@parttimejobs.it">kontakt@parttimejobs.it</a>
+      <a href="mailto:kontakt@parttimejobs.pl">kontakt@parttimejobs.pl</a>
     </div>
   </footer>
 </template>
