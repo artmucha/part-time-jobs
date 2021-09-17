@@ -26,11 +26,12 @@ module.exports = {
   
   dev: process.env.NODE_ENV !== 'production',
 
+  // Env vars
   env: {
-    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    baseUrl: process.env.BASE_URL,
     host: process.env.HOST,
     port: process.env.PORT,
-    
+
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
