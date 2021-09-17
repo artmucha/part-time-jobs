@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`${process.env.DB}:${process.env.DB_PORT}/part-time-jobs`, {
+mongoose.connect(`mongodb://localhost:27017/part-time-jobs`, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

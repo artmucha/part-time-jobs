@@ -1,8 +1,8 @@
 const express = require('express');
-const helmet = require('helmet')
+const helmet = require('helmet');
 
-const db = require('./db')
 const posts = require('./routes/posts');
+const db = require('./db');
 
 const app = express();
 

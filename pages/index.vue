@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  async asyncData({ $config: { baseURL } }) {
-    const res = await fetch(`${baseURL}/api/posts`);
+  async asyncData({ env }) {
+    const res = await fetch(`${env.baseUrl}/api/posts`);
     const posts = await res.json();
     return { posts };
   }

@@ -10,9 +10,9 @@
 export default {
   watchQuery: ["experience"],
 
-  async asyncData({ query, $config: { baseURL } }) {
+  async asyncData({ env, query }) {
     const exp = query.experience ? query.experience : "";
-    const res = await fetch(`${baseURL}/api/posts?experience=${exp}`);
+    const res = await fetch(`${env.baseUrl}/api/posts?experience=${exp}`);
     const posts = await res.json();
     return { posts };
   }

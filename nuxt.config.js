@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'PartTimeJobs',
@@ -23,6 +23,15 @@ export default {
   css: [
     '~assets/scss/global.scss'
   ],
+  
+  dev: process.env.NODE_ENV !== 'production',
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    host: process.env.HOST,
+    port: process.env.PORT,
+    
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
@@ -51,9 +60,4 @@ export default {
   serverMiddleware: [
     '~/api/index'
   ],
-
-  // Configs
-  publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL,
-  },
 }

@@ -10,11 +10,11 @@
 export default {
   watchQuery: ["experience"],
 
-  async asyncData({ params, query, $config: { baseURL } }) {
+  async asyncData({ env, params, query }) {
     const exp = query.experience ? query.experience : "";
     const lang = params.language ? params.language : "";
     const res = await fetch(
-      `${baseURL}/api/posts?language=${lang}&experience=${exp}`
+      `${env.baseUrl}/api/posts?language=${lang}&experience=${exp}`
     );
     const posts = await res.json();
     return { posts };
