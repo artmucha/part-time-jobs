@@ -4,9 +4,8 @@
       <NuxtLink
         v-for="exp in experience"
         :key="exp.id"
-        :to="`/ogloszenia${link}?experience=${exp.value}`"
+        :to="`/ogloszenia/${link}?experience=${exp.value}`"
         class="filter__item"
-        @click.native="setParameters(exp.value)"
       >
         <span>
           <img :src="require(`~/assets/img/${exp.icon}.svg`)" />
@@ -18,9 +17,8 @@
       <NuxtLink
         v-for="lang in language"
         :key="lang.id"
-        :to="`/ogloszenia${lang.value}${param}`"
+        :to="`/ogloszenia${lang.value}?experience=${param}`"
         class="filter__item"
-        @click.native="setLink(lang.value)"
       >
         {{ lang.label }}
       </NuxtLink>
@@ -32,8 +30,8 @@
 export default {
   data() {
     return {
-      link: "",
-      param: "",
+      link: this.$route.params.language || "",
+      param: this.$route.query.experience || "",
       experience: [
         {
           id: 1,
@@ -113,15 +111,6 @@ export default {
         }
       ]
     };
-  },
-
-  methods: {
-    setLink(value) {
-      this.link = `${value}`;
-    },
-    setParameters(value) {
-      this.param = `?experience=${value}`;
-    }
   }
 };
 </script>
