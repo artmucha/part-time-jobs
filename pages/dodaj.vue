@@ -15,16 +15,14 @@
       <label class="label">
         Doświadczenie*
         <select name="experience" id="experience" @change="setValue">
-          <option value="junior">Junior</option>
-          <option value="mid">Mid</option>
-          <option value="senior">Senior</option>
+          <option v-for="exp in experience" :key="exp.id" :value="JSON.stringify(exp)">{{ exp.label }}</option>
         </select>
       </label>
 
       <label class="label">
         Główna technologia / język*
         <select name="language" id="language" @change="setValue">
-          <option v-for="lang in language" :value="lang.value">{{
+          <option v-for="lang in language" :key="lang.id" :value="JSON.stringify(lang)">{{
             lang.label
           }}</option>
         </select>
@@ -32,7 +30,7 @@
 
       <label class="label">Wymagania</label>
       <div class="form__requirements">
-        <label v-for="tech in technology">
+        <label v-for="tech in technology" :key="tech.id">
           <input
             type="checkbox"
             name="requirements"
@@ -65,16 +63,16 @@
         <span class="form__salary">
           <input
             type="text"
-            name="min_salary"
-            id="min_salary"
+            name="salary_min"
+            id="salary_min"
             required
             @change="setValue"
           />
           -
           <input
             type="text"
-            name="max_salary"
-            id="max_salary"
+            name="salary_max"
+            id="salary_max"
             required
             @change="setValue"
           />
@@ -82,7 +80,7 @@
           <select name="salary_per" id="salary_per" @change="setValue">
             <option value="miesiąc">miesiąc</option>
             <option value="dzień">dzień</option>
-            <option value="godzina">godzina</option>
+            <option value="godzinę">godzinę</option>
           </select>
           PLN
         </span>
@@ -114,7 +112,7 @@
       </button>
 
       <ul class="form__errors" v-if="errors.length">
-        <li v-for="error in errors">{{ error.msg }}</li>
+        <li v-for="(error, index) in errors" :key="index">{{ error.msg }}</li>
       </ul>
     </form>
   </div>
@@ -134,13 +132,13 @@ export default {
 
       formData: {
         title: "",
-        experience: "junior",
-        language: "javascript",
+        experience: {label: "Junior", value: "junior"},
+        language: {label: "JavaScript", value: "javascript"},
         requirements: [],
         description: "",
         company: "",
-        min_salary: "",
-        max_salary: "",
+        salary_min: null,
+        salary_max: null,
         salary_per: "miesiąc",
         email: "",
         slug: "",
@@ -159,6 +157,8 @@ export default {
             item => item != e.target.value
           );
         }
+      } else if (e.target.name == "experience" || e.target.name == "language") {
+        this.formData = { ...this.formData, [e.target.name]: JSON.parse(e.target.value) };
       } else if (e.target.name == "regulations" && e.target.checked) {
         this.formData = {
           ...this.formData,

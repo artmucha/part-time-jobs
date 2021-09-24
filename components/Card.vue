@@ -4,7 +4,7 @@
       <header class="card__header">
         <h2 class="card__title">{{ post.title }}</h2>
         <h3 class="card__salary">
-          {{ post.min_salary }} - {{ post.max_salary }} PLN /
+          {{ post.salary_min }} - {{ post.salary_max }} PLN /
           {{ post.salary_per }}
         </h3>
       </header>
@@ -12,7 +12,7 @@
         <div>
           <h3 class="card__company">{{ post.company }}</h3>
           <h3 class="card__experience">
-            <span>Poziom: </span>{{ post.experience }}
+            <span>Poziom: </span>{{ post.experience.label }}
           </h3>
         </div>
         <div class="card__requirements">

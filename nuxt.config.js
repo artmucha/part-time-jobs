@@ -12,7 +12,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-      // { 'http-equiv':'Content-Security-Policy'}
+      { 'http-equiv':'Content-Security-Policy'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -49,9 +49,9 @@ module.exports = {
     host: HOST,
   },
 
-  // render: {
-  //   csp: true,
-  // },
+  render: {
+    csp: true,
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],

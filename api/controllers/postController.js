@@ -3,8 +3,8 @@ const validator = require('express-validator');
 
 // Get all
 module.exports.list = function (req, res, next) {
-  const language = req.query.language ? { 'language' : req.query.language } : {};
-  const experience = req.query.experience ? { 'experience': req.query.experience } : {};
+  const language = req.query.language ? { 'language.value' : req.query.language } : {};
+  const experience = req.query.experience ? { 'experience.value': req.query.experience } : {};
   Post.find({...language, ...experience}, function(err, posts){
     if(err) {
       return res.status(500).json({
@@ -42,8 +42,8 @@ module.exports.create = [
   validator.body('language', 'Wybierz główną technologię').isLength({ min: 1 }),
   validator.body('description', 'Opisz swoja ofertę').isLength({ min: 20 }),
   validator.body('company', 'Podaj nazwę firmy lub zleceniodawcy').isLength({ min: 1 }),
-  validator.body('min_salary', 'Nie zapomnij o widełkach ;)').isLength({ min: 1 }),
-  validator.body('max_salary', 'Nie zapomnij o widełkach ;)').isLength({ min: 1 }),
+  validator.body('salary_min', 'Nie zapomnij o widełkach ;)').isLength({ min: 0 }).isNumeric().withMessage('Wpisz liczbę'),
+  validator.body('salary_max', 'Nie zapomnij o widełkach ;)').isLength({ min: 1 }).isNumeric().withMessage('Wpisz liczbę'),
   validator.body('email', 'Podaj email, na który można wysłać CV').isLength({ min: 1 }),
   validator.body('regulations', 'Zaakceptuj warunki serwisu').matches("true"),
 

@@ -7,16 +7,16 @@
             <h2 class="post__title">{{ post.title }}</h2>
           </div>
           <div class="post__salary">
-            <span>{{ post.min_salary }}</span> -
-            <span>{{ post.max_salary }}</span> PLN / {{ post.salary_per }}
+            <span>{{ post.salary_min }}</span> -
+            <span>{{ post.salary_max }}</span> PLN / {{ post.salary_per }}
           </div>
         </div>
         <div>
           <h3 class="post__category">
-            <span>Kategoria: </span>{{ post.language }}
+            <span>Kategoria: </span>{{ post.language.label }}
           </h3>
           <h3 class="post__experience">
-            <span>Doświadczenie: </span>{{ post.experience }}
+            <span>Doświadczenie: </span>{{ post.experience.label }}
           </h3>
         </div>
       </header>
@@ -25,7 +25,8 @@
         <div class="post__requirements">
           <span
             class="post__requirements_item"
-            v-for="item in post.requirements"
+            v-for="(item, index) in post.requirements"
+            :key="index"
             >{{ item }}</span
           >
         </div>
