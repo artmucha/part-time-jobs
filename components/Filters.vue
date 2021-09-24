@@ -1,5 +1,7 @@
 <template>
   <div class="filters">
+    {{ $route.params }}
+    {{ $route.query }}
     <div class="filter">
       <NuxtLink
         v-for="exp in experience"
@@ -30,8 +32,6 @@
 export default {
   data() {
     return {
-      link: this.$route.params.language || "",
-      param: this.$route.query.experience ? this.$route.query.experience : "",
       experience: [
         {
           id: 1,
@@ -111,6 +111,14 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    link() {
+      return this.$route.params.language || "";
+    },
+    param() {
+      return this.$route.query.experience ? `?experience=${this.$route.query.experience}` : "";
+    }
   }
 };
 </script>
