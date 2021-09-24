@@ -12,13 +12,3 @@ export default {
   layout: "error"
 };
 </script>
-<style lang="scss" scoped>
-.container {
-  width: 100%;
-  height: calc(100vh - 296px);
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 15px;
-  text-align: center;
-}
-</style>

@@ -17,3 +17,503 @@ body {
 a {
   text-decoration: none;
 }
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  min-height: calc(100vh - 296px);
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.empty {
+  text-align: center;
+}
+
+// Header
+
+.header {
+  background: $black;
+  color: rgba(255, 255, 255, 0.8);
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid $grey;
+  }
+
+  &__bottom {
+    padding: 0 15px;
+    border-bottom: 1px solid $grey;
+  }
+
+  &__logo {
+    color: rgba(255, 255, 255, 0.8);
+    h1 {
+      font-size: 22px;
+    }
+  }
+
+  &__action {
+    padding: 5px 20px;
+    color: $white;
+    background-color: #e91e63;
+    border: 1px solid #e91e63;
+    border-radius: 50px;
+    transition: ease-in-out 0.2s background-color;
+
+    &:hover {
+      background-color: darken(#e91e63, 10%);
+    }
+  }
+}
+
+//Filters
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:after {
+    content: "";
+    width: 80px;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(14, 25, 38, 1) 100%
+    );
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  @media (min-width: 992px) {
+    flex-direction: row;
+  }
+}
+
+.filter {
+  padding: 15px 0;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    transition: ease-in-out 0.2s color;
+
+    &:last-of-type {
+      margin-right: 100px;
+    }
+
+    span {
+      display: inline-block;
+      width: 42px;
+      height: 42px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid $grey;
+      border-radius: 50%;
+      overflow: hidden;
+      transition: ease-in-out 0.2s background-color;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    &:hover {
+      color: rgba(255, 255, 255, 1);
+
+      span {
+        background-color: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+}
+
+// Card
+
+.card {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: $white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 5px 0 rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  &:hover {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.07), 0 3px 7px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  &__header {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  &__title {
+    color: $black;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media (min-width: 768px) {
+      font-size: 18px;
+      padding-right: 5px;
+    }
+  }
+
+  &__salary {
+    color: rgb(30, 198, 108);
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 24px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media (min-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__company {
+    color: $grey;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  &__experience {
+    margin-top: 10px;
+    font-size: 12px;
+    color: $black;
+    span {
+      color: $grey;
+      font-weight: 400;
+    }
+  }
+
+  &__requirements {
+    display: none;
+
+    @media (min-width: 768px) {
+      display: flex;
+      align-items: flex-end;
+
+      &_item {
+        color: $grey;
+        height: 22px;
+        display: inline-block;
+        padding: 0 7px;
+        overflow: hidden;
+        font-size: 12px;
+        min-width: 20px;
+        line-height: 20px;
+        margin-left: 6px;
+        white-space: nowrap;
+        border: 1px solid $grey;
+        text-overflow: ellipsis;
+        text-transform: lowercase;
+      }
+    }
+  }
+}
+
+// Footer
+.footer {
+  padding: 20px 15px;
+  background: $black;
+  color: rgba(255, 255, 255, 0.8);
+
+  &__logo {
+    color: rgba(255, 255, 255, 0.8);
+    h2 {
+      font-size: 22px;
+    }
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  a {
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  @media (min-width: 992px) {
+    display: flex;
+    div {
+      max-width: 300px;
+      margin-right: 50px;
+    }
+  }
+}
+
+// Single Post
+.post {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: $white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 5px 0 rgba(0, 0, 0, 0.04);
+
+  @media (min-width: 768px) {
+    &__header {
+      & > div {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 28px;
+  }
+
+  &__subtitle {
+    margin-bottom: 10px;
+  }
+
+  &__date {
+    font-size: 14px;
+    font-weight: 400;
+    color: $grey;
+  }
+
+  &__category,
+  &__experience {
+    margin-top: 10px;
+    font-size: 16px;
+    span {
+      color: $grey;
+      font-weight: 400;
+    }
+  }
+
+  &__body {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid $grey;
+  }
+
+  &__salary {
+    margin-top: 10px;
+    color: rgb(30, 198, 108);
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @media (min-width: 768px) {
+      margin-top: 0;
+      font-size: 24px;
+    }
+  }
+
+  &__requirements {
+    display: flex;
+
+    &_item {
+      color: $grey;
+      height: 26px;
+      display: inline-block;
+      padding: 0 7px;
+      overflow: hidden;
+      font-size: 14px;
+      min-width: 20px;
+      line-height: 24px;
+      margin-right: 6px;
+      white-space: nowrap;
+      border: 1px solid $grey;
+      text-overflow: ellipsis;
+      text-transform: lowercase;
+    }
+  }
+
+  &__details {
+    @media (min-width: 768px) {
+      p {
+        display: inline-block;
+        width: 70%;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  &__contact {
+    p {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+}
+
+// Add new Post
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 6px;
+  background-color: $white;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 5px 0 rgba(0, 0, 0, 0.04);
+
+  label {
+    color: $black;
+    margin-top: 20px;
+
+    &.label {
+      display: block;
+      width: 100%;
+      font-weight: 600;
+
+      input,
+      textarea {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+
+  input,
+  textarea {
+    border: 1px solid $grey;
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  textarea {
+    min-height: 200px;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+
+  &__requirements {
+    label {
+      display: block;
+    }
+
+    @media (min-width: 768px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      label {
+        margin-right: 50px;
+      }
+    }
+  }
+
+  &__salary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    input {
+      width: 40% !important;
+    }
+  }
+
+  &__submit {
+    width: 200px;
+    height: 44px;
+    margin: 20px auto 0 auto;
+    padding: 10px 20px;
+    background-color: #e91e63;
+    border: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: ease-in-out 0.2s background-color;
+    position: relative;
+
+    &:hover {
+      background-color: darken(#e91e63, 10%);
+    }
+
+    span {
+      color: $white;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: "Nunito", sans-serif;
+    }
+
+    &.pending {
+      span {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        border: 4px solid transparent;
+        border-top-color: #ffffff;
+        border-radius: 50%;
+        animation: button-loading-spinner 1s ease infinite;
+      }
+    }
+
+    &.success {
+      background-color: #22bb33;
+    }
+
+    &.error {
+      background-color: #bb2124;
+    }
+  }
+
+  &__errors {
+    margin-top: 20px;
+
+    li {
+      display: block;
+      color: #bb2124;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}

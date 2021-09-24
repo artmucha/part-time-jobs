@@ -27,13 +27,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-.container {
-  width: 100%;
-  max-width: 1000px;
-  min-height: calc(100vh - 296px);
-  margin: 0 auto;
-  padding: 15px;
-}
-</style>

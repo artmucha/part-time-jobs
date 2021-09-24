@@ -17,36 +17,3 @@
     </div>
   </footer>
 </template>
-
-<style lang="scss">
-.footer {
-  padding: 20px 15px;
-  background: $black;
-  color: rgba(255, 255, 255, 0.8);
-
-  &__logo {
-    color: rgba(255, 255, 255, 0.8);
-    h2 {
-      font-size: 22px;
-    }
-  }
-
-  strong {
-    display: block;
-    margin-bottom: 8px;
-  }
-
-  a {
-    display: block;
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  @media (min-width: 992px) {
-    display: flex;
-    div {
-      max-width: 300px;
-      margin-right: 50px;
-    }
-  }
-}
-</style>
