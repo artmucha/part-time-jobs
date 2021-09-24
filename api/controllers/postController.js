@@ -8,13 +8,13 @@ module.exports.list = function (req, res, next) {
   Post.find({...language, ...experience}, function(err, posts){
     if(err) {
       return res.status(500).json({
-        message: 'Error getting records.'
+        message: 'Error getting records.',
+        error: err
       });
     }
     return res.status(200).json(posts);
   });
 }
-
 
 // Get one
 module.exports.show = function(req, res) {

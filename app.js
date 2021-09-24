@@ -1,24 +1,21 @@
-const app = require('express')();
 const { loadNuxt, build } = require('nuxt');
+const app = require('express')();
 const helmet = require('helmet');
-
-const isDev = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 3000;
+const config = require('./nuxt.config.js');
 
 async function start() {
-  const nuxt = await loadNuxt(isDev ? 'dev' : 'start')
+  const nuxt = await loadNuxt(config.dev ? 'dev' : 'start');
 
   app.use(helmet());
   app.use(nuxt.render);
 
-  if (isDev) {
+  if (config.dev) {
     build(nuxt)
   }
 
-  app.listen(port, () => {
-    console.log(`Server listening on ${port}`);
+  app.listen(3000, () => {
+    console.log(`Server is listening`)
   });
-
 }
 
 start();

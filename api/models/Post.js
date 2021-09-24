@@ -18,4 +18,4 @@ const Post = new Schema ({
   regulations:  { type: String, required: true },
 });
 
-module.exports = mongoose.model('Post', Post);
+module.exports = mongoose.models.Post || mongoose.model('Post', Post);

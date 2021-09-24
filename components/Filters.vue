@@ -17,7 +17,7 @@
       <NuxtLink
         v-for="lang in language"
         :key="lang.id"
-        :to="`/ogloszenia${lang.value}?experience=${param}`"
+        :to="`/ogloszenia${lang.value}${param}`"
         class="filter__item"
       >
         {{ lang.label }}
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       link: this.$route.params.language || "",
-      param: this.$route.query.experience || "",
+      param: this.$route.query.experience ? this.$route.query.experience : "",
       experience: [
         {
           id: 1,

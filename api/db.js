@@ -1,6 +1,11 @@
+require('../.env');
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://localhost:27017/part-time-jobs`, {
+mongoose.connect(`${DB_USER}:${DB_PASS}@${DB}:${DB_PORT}/${DB_NAME}`, {
+    auth: {
+      username:`${DB_USER}`,
+      password: `${DB_PASS}`
+    },
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });

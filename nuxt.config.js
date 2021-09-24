@@ -1,15 +1,18 @@
+require('./.env');
+
 module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'PartTimeJobs',
     htmlAttrs: {
-      lang: 'pl'
+      lang: 'en'
     },
     meta: [
-      { charset: 'utf-8' },
+      { charset: 'utf-8'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      { 'http-equiv':'Content-Security-Policy'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -24,14 +27,30 @@ module.exports = {
     '~assets/scss/global.scss'
   ],
   
-  dev: process.env.NODE_ENV !== 'production',
+  dev: NODE_ENV !== 'production',
 
   // Env vars
-  env: {
-    baseUrl: process.env.BASE_URL,
-    host: process.env.HOST,
-    port: process.env.PORT,
 
+  env: {
+    BASE_URL: BASE_URL,
+    PORT: PORT,
+    HOST: HOST,
+    DB: DB,
+    DB_PORT: DB_PORT,
+    DB_NAME: DB_NAME,
+    DB_USER: DB_USER,
+    DB_PASS: DB_PASS,
+    NODE_ENV: NODE_ENV,
+  },
+
+  publicRuntimeConfig: {
+    baseURL: BASE_URL,
+    port: PORT,
+    host: HOST,
+  },
+
+  render: {
+    csp: true,
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -46,7 +65,7 @@ module.exports = {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
   ],
 
   styleResources: {
@@ -59,6 +78,6 @@ module.exports = {
 
   // Server Middleware
   serverMiddleware: [
-    '~/api/index'
+    '~/api/index',
   ],
 }

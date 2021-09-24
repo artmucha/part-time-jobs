@@ -54,8 +54,8 @@ export default {
     };
   },
 
-  async asyncData({ env, params }) {
-    const res = await fetch(`${env.baseUrl}/api/posts/${params.slug}`);
+  async asyncData({ $config: { baseURL }, params }) {
+    const res = await fetch(`${baseURL}/api/posts/${params.slug}`);
     const post = await res.json();
     return { post };
   }

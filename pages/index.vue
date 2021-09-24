@@ -9,8 +9,8 @@
 
 <script>
 export default {
-  async asyncData({ env }) {
-    const res = await fetch(`${env.baseUrl}/api/posts`);
+  async asyncData({ $config: { baseURL } }) {
+    const res = await fetch(`${baseURL}/api/posts`);
     const posts = await res.json();
     return { posts };
   }
