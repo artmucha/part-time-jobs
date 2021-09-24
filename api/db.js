@@ -2,10 +2,10 @@ require('../.env');
 const mongoose = require('mongoose');
 
 mongoose.connect(`${DB_USER}:${DB_PASS}@${DB}:${DB_PORT}/${DB_NAME}`, {
-    auth: {
-      username:`${DB_USER}`,
-      password: `${DB_PASS}`
-    },
+    // auth: {
+    //   username:`${DB_USER}`,
+    //   password: `${DB_PASS}`
+    // },
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
