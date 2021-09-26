@@ -54,6 +54,7 @@ export const create = [
   }
 ];
 
+// delete - only for admin now
 export const deletePost = async (req, res) => {
   const id = req.params.id;
 
