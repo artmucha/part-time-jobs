@@ -1,10 +1,10 @@
 const { Router } = require('express');
-const postController = require('../controllers/postController');
+const {list, show, create} = require('../controllers/postController');
 
 const router = Router();
 
-router.get('/posts', postController.list);
-router.get('/posts/:slug', postController.show);
-router.post('/posts', postController.create);
+router.get('/posts', list);
+router.get('/posts/:slug', show);
+router.post('/posts', create);
 
 module.exports = router;
