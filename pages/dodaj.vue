@@ -104,7 +104,7 @@
           required
           @change="setValue"
         />
-        Zapoznałem się z regulaminem i akceptuję jego zapisy.
+        Zapoznałem się z <NuxtLink to="/regulamin" target="_blank">regulaminem</NuxtLink> i <NuxtLink to="/polityka" target="_blank">polityką prywatności</NuxtLink> oraz akceptuję ich zapisy.
       </label>
 
       <button :class="['form__submit', status]" @click.prevent="submit">
