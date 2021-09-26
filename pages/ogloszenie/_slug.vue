@@ -4,19 +4,19 @@
       <header class="post__header">
         <div>
           <div>
-            <h2 class="post__title">{{ post.title }}</h2>
+            <h2 class="post__title">{{ data.post.title }}</h2>
           </div>
           <div class="post__salary">
-            <span>{{ post.salary_min }}</span> -
-            <span>{{ post.salary_max }}</span> PLN / {{ post.salary_per }}
+            <span>{{ data.post.salary_min }}</span> -
+            <span>{{ data.post.salary_max }}</span> PLN / {{ data.post.salary_per }}
           </div>
         </div>
         <div>
           <h3 class="post__category">
-            <span>Kategoria: </span>{{ post.language.label }}
+            <span>Kategoria: </span>{{ data.post.language.label }}
           </h3>
           <h3 class="post__experience">
-            <span>Doświadczenie: </span>{{ post.experience.label }}
+            <span>Doświadczenie: </span>{{ data.post.experience.label }}
           </h3>
         </div>
       </header>
@@ -25,23 +25,24 @@
         <div class="post__requirements">
           <span
             class="post__requirements_item"
-            v-for="(item, index) in post.requirements"
+            v-for="(item, index) in data.post.requirements"
             :key="index"
             >{{ item }}</span
           >
         </div>
       </div>
       <div class="post__body post__details">
-        <p v-html="post.description"></p>
+        <p v-html="data.post.description"></p>
       </div>
       <div class="post__body post__contact">
         <h4>
           Wyślij CV:
-          <a v-if="showEmail" :href="`mailto: ${post.email}`">{{
-            post.email
+          <a v-if="showEmail" :href="`mailto: ${data.post.email}`">{{
+            data.post.email
           }}</a>
           <p v-else @click="showEmail = !showEmail">pokaż email</p>
         </h4>
+        <button v-if="data.admin" @click="deletePost(data.post._id)">usuń</button>
       </div>
     </article>
   </div>
@@ -55,10 +56,19 @@ export default {
     };
   },
 
-  async asyncData({ $config: { baseURL }, params }) {
-    const res = await fetch(`${baseURL}/api/posts/${params.slug}`);
-    const post = await res.json();
-    return { post };
+  methods: {
+    async deletePost(id) {
+      await fetch(`/api/posts/${id}`, {
+        method: 'DELETE',
+      });
+    }
+  },
+
+  async asyncData({ $config: { baseURL }, params, query }) {
+    const admin = query.admin ? query.admin : "";
+    const res = await fetch(`${baseURL}/api/posts/${params.slug}?admin=${admin}`);
+    const data = await res.json();
+    return { data };
   }
 };
 </script>

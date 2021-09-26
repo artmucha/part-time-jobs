@@ -17,10 +17,11 @@ export const list = async (req, res) => {
 // Get one
 export const show = async (req, res) => {
   const slug = req.params.slug;
+  const admin = process.env.ADMIN == req.query.admin;
 
   try {
     const post = await Post.findOne({slug});
-    res.status(200).json(post);
+    res.status(200).json({post, admin});
   } catch (error) {
     res.status(500).json({message: 'Błąd serwera', error: error});
   }
@@ -52,3 +53,15 @@ export const create = [
     }
   }
 ];
+
+export const deletePost = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const deletedPost = await Post.deleteOne({_id : id});
+    if(!deletedPost) res.status(400).json({message: 'To ogłoszenie nie istnieje'});
+    res.status(200).json({});
+  } catch (error) {
+    res.status(400).json({message: 'To ogłoszenie nie istnieje'});
+  }
+}
