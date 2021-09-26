@@ -16,6 +16,9 @@ const Post = new Schema ({
   email: { type: String, required: true },
   slug: { type: String },
   regulations:  { type: String, required: true },
+  date: { type: String },
+}, {
+  timestamps: { createdAt: true, updatedAt: true }
 });
 
 module.exports = mongoose.models.Post || mongoose.model('Post', Post);

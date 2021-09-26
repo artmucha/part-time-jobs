@@ -5,14 +5,14 @@ module.exports = {
   head: {
     title: 'PartTimeJobs',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'pl'
     },
     meta: [
       { charset: 'utf-8'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
-      { 'http-equiv':'Content-Security-Policy'}
+      // { 'http-equiv':'Content-Security-Policy'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -41,17 +41,18 @@ module.exports = {
     DB_USER: DB_USER,
     DB_PASS: DB_PASS,
     NODE_ENV: NODE_ENV,
+    ADMIN: ADMIN,
   },
-
+  
   publicRuntimeConfig: {
     baseURL: BASE_URL,
     port: PORT,
     host: HOST,
   },
 
-  render: {
-    csp: true,
-  },
+  // render: {
+  //   csp: true,
+  // },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],

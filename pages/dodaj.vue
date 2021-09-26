@@ -142,7 +142,8 @@ export default {
         salary_per: "miesiąc",
         email: "",
         slug: "",
-        regulations: false
+        regulations: false,
+        date: "",
       }
     };
   },
@@ -172,18 +173,15 @@ export default {
     async submit() {
       this.status = "pending";
       try {
-        let { title, company } = this.formData;
+        let { title } = this.formData;
         title = title
           .split(" ")
           .join("-")
           .toLowerCase();
-        company = company
-          .split(" ")
-          .join("-")
-          .toLowerCase();
         const date = new Date().getTime();
-        const slug = `${title}-${company}-${date}`;
+        const slug = `${title}-${date}`;
         this.formData.slug = slug;
+        this.formData.date = new Intl.DateTimeFormat('pl-PL', { dateStyle: 'long' }).format(new Date());
 
         const res = await fetch("/api/posts", {
           method: "POST",

@@ -7,7 +7,7 @@ export const list = async (req, res) => {
   const experience = req.query.experience ? { 'experience.value': req.query.experience } : {};
 
   try {
-    const posts = await Post.find({...language, ...experience});
+    const posts = await Post.find({...language, ...experience}).sort({createdAt: 'desc'});
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({message: 'Błąd serwera', error: error});
