@@ -1,7 +1,6 @@
 <template>
   <NuxtLink :to="`/ogloszenie/${post.slug}`">
     <article class="card">
-      {{ post }}
       <header class="card__header">
         <h2 class="card__title">{{ post.title }}</h2>
         <h3 class="card__salary">
