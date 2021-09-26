@@ -8,8 +8,20 @@
       </p>
     </div>
     <div>
+      <strong>Ogłoszenia</strong>
+      <NuxtLink
+        v-for="lang in language"
+        :key="lang.id"
+        :to="`/ogloszenia/${lang.value}`"
+        class="filter__item"
+      >
+        {{ lang.label }}
+      </NuxtLink>
+    </div>
+    <div>
       <strong>O serwisie</strong>
       <NuxtLink to="/regulamin">Regulamin</NuxtLink>
+      <NuxtLink to="/polityka">Polityka prywatności</NuxtLink>
     </div>
     <div>
       <strong>Kontakt</strong>
@@ -17,3 +29,13 @@
     </div>
   </footer>
 </template>
+<script>
+const { language } = require('~/static/constans.js');
+export default {
+  data() {
+    return {
+      language
+    }
+  },
+};
+</script>
