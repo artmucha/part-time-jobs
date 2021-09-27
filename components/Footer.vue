@@ -3,7 +3,7 @@
     <div>
       <NuxtLink to="/" class="footer__logo"><h2>PartTimeJobs</h2></NuxtLink>
       <p>
-        PartTimeJobs.pl to pierwszy serwis z ofertami pracy tymczasowej,
+        PartTimeJobs.pl to serwis z ofertami pracy tymczasowej,
         dodatkowej oraz zleceniami dla programistów.
       </p>
     </div>
