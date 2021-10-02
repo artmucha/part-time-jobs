@@ -212,6 +212,6 @@ export default {
         this.buttonText = "Błąd!";
       }
     }
-  }
+  },
 };
 </script>

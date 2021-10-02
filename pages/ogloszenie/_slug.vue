@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="post__body post__details">
-        <p v-html="data.post.description"></p>
+        <div v-html="data.post.description"></div>
       </div>
       <div class="post__body post__contact">
         <h4>

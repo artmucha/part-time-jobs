@@ -348,6 +348,7 @@ a {
 
   &__requirements {
     display: flex;
+    flex-wrap: wrap;
 
     &_item {
       color: $grey;
@@ -359,6 +360,7 @@ a {
       min-width: 20px;
       line-height: 24px;
       margin-right: 6px;
+      margin-bottom: 6px;
       white-space: nowrap;
       border: 1px solid $grey;
       text-overflow: ellipsis;
@@ -368,11 +370,15 @@ a {
 
   &__details {
     @media (min-width: 768px) {
-      p {
+      div {
         display: inline-block;
         width: 70%;
         overflow-wrap: break-word;
         word-wrap: break-word;
+
+        ul {
+          margin-left: 15px;
+        }
       }
     }
   }
