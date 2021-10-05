@@ -264,6 +264,7 @@ a {
 
   strong {
     display: block;
+    margin-top: 16px;
     margin-bottom: 8px;
   }
 
@@ -277,6 +278,10 @@ a {
     div {
       max-width: 300px;
       margin-right: 50px;
+    }
+
+    strong {
+      margin-top: 0px;
     }
   }
 }
