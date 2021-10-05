@@ -2,7 +2,9 @@
   <div class="container">
     <Empty v-if="!posts.length" />
     <template v-for="post in posts">
-      <Card :key="post._id" :post="post" />
+      <NuxtLink :key="post._id" :to="`/ogloszenie/${post.slug}`">
+      <Card :post="post" />
+      </NuxtLink>
     </template>
   </div>
 </template>

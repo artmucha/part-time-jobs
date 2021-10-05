@@ -7,7 +7,7 @@ export const list = async (req, res) => {
   const experience = req.query.experience ? { 'experience.value': req.query.experience } : {};
 
   try {
-    const posts = await Post.find({...language, ...experience}).sort({createdAt: 'desc'});
+    const posts = await Post.find({...language, ...experience, accepted: true}).sort({createdAt: 'desc'});
     res.status(200).json(posts);
   } catch (error) {
     res.status(500).json({message: 'Błąd serwera', error: error});
@@ -27,7 +27,7 @@ export const show = async (req, res) => {
   }
 }
 
-// Create
+// Create - review only
 export const create = [
   validator.body('title', 'Podaj nazwę stanowiska').isLength({ min: 1 }),
   validator.body('experience', 'Wybierz poziom doświadczenia').isLength({ min: 1 }),

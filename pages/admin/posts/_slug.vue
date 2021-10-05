@@ -8,6 +8,7 @@
           name="title"
           id="title"
           required
+          :value="formData.title"
           @change="setValue"
         />
       </label>
@@ -15,6 +16,7 @@
       <label class="label">
         Doświadczenie*
         <select name="experience" id="experience" @change="setValue">
+          <option :value="JSON.stringify(formData.experience)" selected>{{ formData.experience.label }}</option>
           <option v-for="exp in experience" :key="exp.id" :value="JSON.stringify(exp)">{{ exp.label }}</option>
         </select>
       </label>
@@ -22,28 +24,16 @@
       <label class="label">
         Główna technologia / język*
         <select name="language" id="language" @change="setValue">
+          <option :value="JSON.stringify(formData.language)" selected>{{ formData.language.label }}</option>
           <option v-for="lang in language" :key="lang.id" :value="JSON.stringify(lang)">{{
             lang.label
           }}</option>
         </select>
       </label>
 
-      <label class="label">Wymagania</label>
-      <div class="form__requirements">
-        <label v-for="tech in technology" :key="tech.id">
-          <input
-            type="checkbox"
-            name="requirements"
-            :value="tech.value"
-            @change="setValue"
-          />
-          {{ tech.label }}
-        </label>
-      </div>
-
       <label class="label">
         Opis stanowiska*
-        <textarea name="description" id="description" @change="setValue">
+        <textarea name="description" id="description" :value="formData.description" @change="setValue">
         </textarea>
       </label>
 
@@ -54,60 +44,23 @@
           name="company"
           id="company"
           required
+          :value="formData.company"
           @change="setValue"
         />
       </label>
 
-      <label class="label">
-        Stawka (widełki)*
-        <span class="form__salary">
-          <input
-            type="text"
-            name="salary_min"
-            id="salary_min"
-            required
-            @change="setValue"
-          />
-          -
-          <input
-            type="text"
-            name="salary_max"
-            id="salary_max"
-            required
-            @change="setValue"
-          />
-          /
-          <select name="salary_per" id="salary_per" @change="setValue">
-            <option value="miesiąc">miesiąc</option>
-            <option value="dzień">dzień</option>
-            <option value="godzinę">godzinę</option>
-          </select>
-          PLN
-        </span>
-      </label>
-
-      <label class="label">
-        E-mail*
-        <input
-          type="email"
-          name="email"
-          id="email"
-          required
-          @change="setValue"
-        />
-      </label>
       <label>
         <input
           type="checkbox"
-          name="regulations"
-          id="regulations"
+          name="accepted"
+          id="accepted"
           required
           @change="setValue"
         />
-        Zapoznałem się z <NuxtLink to="/regulamin" target="_blank">regulaminem</NuxtLink> i <NuxtLink to="/polityka" target="_blank">polityką prywatności</NuxtLink> oraz akceptuję ich zapisy.
+        Zaakceptuj
       </label>
 
-      <button :class="['form__submit', status]" @click.prevent="submit">
+      <button :class="['form__submit', status]" @click.prevent="updatePost">
         <span>{{ buttonText }}</span>
       </button>
 
@@ -119,27 +72,25 @@
 </template>
 
 <script>
-const { experience, language, technology } = require('~/static/constans.js');
+const { experience, language } = require('~/static/constans.js');
 export default {
   data() {
     return {
-      buttonText: "Dodaj",
+      buttonText: "Opublikuj",
       status: "",
       errors: [],
       experience,
       language,
-      technology,
-
       formData: {
         title: "",
-        experience: {label: "Junior", value: "junior"},
-        language: {label: "JavaScript", value: "javascript"},
+        experience: {label: "", value: ""},
+        language: {label: "", value: ""},
         requirements: [],
         description: "",
         company: "",
         salary_min: null,
         salary_max: null,
-        salary_per: "miesiąc",
+        salary_per: "",
         email: "",
         slug: "",
         regulations: false,
@@ -150,6 +101,14 @@ export default {
   },
 
   methods: {
+
+    async fetchPost() {
+      const { slug } = $nuxt.context.params;
+      const { admin } = $nuxt.context.query;
+      const res = await fetch(`/api/admin/posts/${slug}?admin=${admin}`);
+      this.formData = await res.json();
+    },
+
     setValue(e) {
       if (e.target.name == "requirements") {
         if (e.target.checked) {
@@ -161,7 +120,7 @@ export default {
         }
       } else if (e.target.name == "experience" || e.target.name == "language") {
         this.formData = { ...this.formData, [e.target.name]: JSON.parse(e.target.value) };
-      } else if (e.target.name == "regulations" && e.target.checked) {
+      } else if (e.target.name == "accepted" && e.target.checked) {
         this.formData = {
           ...this.formData,
           [e.target.name]: !!e.target.value
@@ -171,21 +130,11 @@ export default {
       }
     },
 
-    async submit() {
+    async updatePost() {
       this.status = "pending";
       try {
-        let { title } = this.formData;
-        title = title
-          .split(" ")
-          .join("-")
-          .toLowerCase();
-        const date = new Date().getTime();
-        const slug = `${title}-${date}`;
-        this.formData.slug = slug;
-        this.formData.date = new Intl.DateTimeFormat('pl-PL', { dateStyle: 'long' }).format(new Date());
-
-        const res = await fetch("/api/posts", {
-          method: "POST",
+        const res = await fetch(`/api/admin/posts`, {
+          method: "PUT",
           headers: {
             "Content-Type": "application/json"
           },
@@ -214,5 +163,9 @@ export default {
       }
     }
   },
+
+  created() {
+    this.fetchPost();
+  }
 };
 </script>

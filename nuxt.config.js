@@ -24,7 +24,7 @@ module.exports = {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '~assets/scss/global.scss'
+    '~assets/scss/global.scss',
   ],
   
   dev: NODE_ENV !== 'production',

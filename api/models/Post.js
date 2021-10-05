@@ -17,6 +17,7 @@ const Post = new Schema ({
   slug: { type: String },
   regulations:  { type: String, required: true },
   date: { type: String },
+  accepted: { type: Boolean }
 }, {
   timestamps: { createdAt: true, updatedAt: true }
 });
