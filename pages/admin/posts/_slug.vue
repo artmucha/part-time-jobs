@@ -105,6 +105,7 @@ export default {
     async fetchPost() {
       const { slug } = $nuxt.context.params;
       const { admin } = $nuxt.context.query;
+      if (!admin) $nuxt.context.redirect('/');
       const res = await fetch(`/api/admin/posts/${slug}?admin=${admin}`);
       this.formData = await res.json();
     },
@@ -164,7 +165,7 @@ export default {
     }
   },
 
-  created() {
+  mounted() {
     this.fetchPost();
   }
 };
