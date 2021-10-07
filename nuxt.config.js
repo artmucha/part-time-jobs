@@ -3,14 +3,15 @@ require('./.env');
 module.exports = {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'PartTimeJobs',
+    title: 'PartTimeJobs | Zlecenia i praca dodatkowa dla programistów',
     htmlAttrs: {
       lang: 'pl'
     },
     meta: [
       { charset: 'utf-8'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'PartTimeJobs.pl to serwis z ofertami pracy tymczasowej, dodatkowej oraz zleceniami dla programistów.' },
+      { name: 'keywords', content: 'zlecenia, praca, oferty pracy, praca dodatkowa, dla programistów'},
       { name: 'format-detection', content: 'telephone=no' },
       // { 'http-equiv':'Content-Security-Policy'}
     ],
@@ -18,7 +19,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: "true" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700;900&display=swap" }
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap" }
     ]
   },
 

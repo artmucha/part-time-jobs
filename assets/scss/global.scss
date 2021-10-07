@@ -179,7 +179,7 @@ a {
     color: $black;
     overflow: hidden;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     white-space: nowrap;
     text-overflow: ellipsis;
 
@@ -286,6 +286,19 @@ a {
   }
 }
 
+// Posts
+
+.posts {
+  &__header {
+    font-size: 18px;
+    margin: 20px 0;
+
+    @media (min-width: 768px) {
+      font-size: 24px;
+    }
+  }
+}
+
 // Single Post
 .post {
   display: flex;
@@ -341,7 +354,7 @@ a {
     color: rgb(30, 198, 108);
     overflow: hidden;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 24px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -414,7 +427,7 @@ a {
     &.label {
       display: block;
       width: 100%;
-      font-weight: 600;
+      font-weight: 700;
 
       input,
       textarea {
@@ -481,7 +494,7 @@ a {
     span {
       color: $white;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 700;
       font-family: "Nunito", sans-serif;
     }
 
