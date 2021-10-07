@@ -114,6 +114,7 @@
       <ul class="form__errors" v-if="errors.length">
         <li v-for="(error, index) in errors" :key="index">{{ error.msg }}</li>
       </ul>
+      <p v-if="status === 'success'" class="form__status success" >Twoje ogłoszenie zostało dodane i pojawi się w serwisie po akceptacji przez administratora</p>
     </form>
   </div>
 </template>
@@ -204,9 +205,6 @@ export default {
         } else {
           this.status = "success";
           this.buttonText = "Dodano";
-          setTimeout(() => {
-            this.$router.push("/");
-          }, 2000);
         }
       } catch (error) {
         this.status = "error";

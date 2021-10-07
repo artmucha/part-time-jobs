@@ -528,6 +528,15 @@ a {
       line-height: 20px;
     }
   }
+
+  &__status {
+    font-size: 14px;
+    line-height: 20px;
+
+    &.success {
+      color: #22bb33;
+    }
+  }
 }
 
 @keyframes button-loading-spinner {
