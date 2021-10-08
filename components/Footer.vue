@@ -37,5 +37,9 @@ export default {
       language
     }
   },
+
+  mounted() {
+    this.$ga.page(this.$router);
+  }
 };
 </script>
