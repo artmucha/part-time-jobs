@@ -43,12 +43,21 @@ module.exports = {
     DB_PASS: DB_PASS,
     NODE_ENV: NODE_ENV,
     ADMIN: ADMIN,
+    GOOGLE_ANALYTICS_ID: GOOGLE_ANALYTICS_ID,
   },
   
   publicRuntimeConfig: {
     baseURL: BASE_URL,
     port: PORT,
     host: HOST,
+
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID
+    }
+  },
+
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
   },
 
   // render: {
@@ -63,6 +72,7 @@ module.exports = {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
