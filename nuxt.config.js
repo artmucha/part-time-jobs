@@ -62,9 +62,21 @@ module.exports = {
     pageTracking: true
   },
 
-  // render: {
-  //   csp: true,
-  // },
+  render: {
+    csp: {
+      hashAlgorithm: 'sha256',
+      policies: {
+        'script-src': [
+          "'self'",
+          "'unsafe-inline'",
+          'https://fonts.googleapis.com',
+          'https://www.google-analytics.com',
+          'https://parttimejobs.pl'
+        ],
+        'connect-src': ['https://parttimejobs.pl', '*.google-analytics.com'],
+      },
+    }
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
