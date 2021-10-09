@@ -11,7 +11,7 @@ module.exports = {
       { charset: 'utf-8'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'PartTimeJobs.pl to serwis z ofertami pracy tymczasowej, dodatkowej oraz zleceniami dla programistów.' },
-      { name: 'keywords', content: 'zlecenia, praca, oferty pracy, praca dodatkowa, dla programistów'},
+      { name: 'keywords', content: 'zlecenia, praca, oferty pracy, praca dodatkowa, dla programistów, javascript, php, java, python, ruby, c, net, go, scala, ios, android'},
       { name: 'format-detection', content: 'telephone=no' },
       // { 'http-equiv':'Content-Security-Policy'}
     ],
