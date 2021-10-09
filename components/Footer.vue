@@ -30,6 +30,12 @@
       </div>
     </div>
     <p class="footer__copyright">Copyright © {{ new Date().getFullYear() }} <NuxtLink to="https://parttimejobs.pl">PartTimeJobs</NuxtLink> - Wszystkie prawa zastrzeżone.</p>
+    <FlashMessage 
+      v-if="!cookie"
+      message="PartTimeJobs stosuje ciasteczka w celu realizacji usług. Korzystając ze strony wyrażasz zgodę na ich używanie. Dowiedz się więcej z naszej Polityki Prywatności." 
+      action="Akceptuję"
+      @onClick="acceptCookies"
+    />
   </footer>
 </template>
 <script>
@@ -37,8 +43,47 @@ const { language } = require('~/static/constans.js');
 export default {
   data() {
     return {
-      language
+      language,
+      cookie: false,
     }
   },
+
+  methods: {
+    setCookie(cname, cvalue, exdays) {
+      const d = new Date();
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+      let expires = "expires="+d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      this.cookie = true;
+    },
+
+    getCookie(cname) {
+      let name = cname + "=";
+      let ca = document.cookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    },
+
+    checkCookie() {
+      let cookie = this.getCookie("acceptCookies");
+      if (cookie != "") this.cookie = true;
+    },
+
+    acceptCookies() {
+      this.setCookie("acceptCookies", true, 30);
+    }
+  },
+
+  mounted() {
+    this.checkCookie();
+  }
 };
 </script>
