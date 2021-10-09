@@ -29,7 +29,7 @@
         <a href="mailto:kontakt@parttimejobs.pl">kontakt@parttimejobs.pl</a>
       </div>
     </div>
-    <p class="footer__copyright">Copyright © {{ new Date().getFullYear() }} <NuxtLink to="https://parttimejobs.pl"><a>PartTimeJobs</a></NuxtLink> - Wszystkie prawa zastrzeżone.</p>
+    <p class="footer__copyright">Copyright © {{ new Date().getFullYear() }} <NuxtLink to="https://parttimejobs.pl">PartTimeJobs</NuxtLink> - Wszystkie prawa zastrzeżone.</p>
   </footer>
 </template>
 <script>
@@ -40,9 +40,5 @@ export default {
       language
     }
   },
-
-  mounted() {
-    this.$ga.page(this.$router);
-  }
 };
 </script>

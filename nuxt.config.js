@@ -13,7 +13,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'PartTimeJobs.pl to serwis z ofertami pracy tymczasowej, dodatkowej oraz zleceniami dla programistów.' },
       { name: 'keywords', content: 'zlecenia, praca, oferty pracy, praca dodatkowa, dla programistów'},
       { name: 'format-detection', content: 'telephone=no' },
-      { 'http-equiv':'Content-Security-Policy'}
+      // { 'http-equiv':'Content-Security-Policy'}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -52,17 +52,19 @@ module.exports = {
     host: HOST,
 
     googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID
+      id: process.env.GOOGLE_ANALYTICS_ID,
     }
   },
 
   googleAnalytics: {
     id: process.env.GOOGLE_ANALYTICS_ID,
+    layer: 'dataLayer',
+    pageTracking: true
   },
 
-  render: {
-    csp: true,
-  },
+  // render: {
+  //   csp: true,
+  // },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
