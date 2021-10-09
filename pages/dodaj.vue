@@ -151,6 +151,13 @@ export default {
   },
 
   methods: {
+
+    makeSlug(text) {
+      let title = text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
+      let date = new Date().getTime();
+      return `${title}-${date}`;
+    },
+    
     setValue(e) {
       if (e.target.name == "requirements") {
         if (e.target.checked) {
@@ -176,13 +183,7 @@ export default {
       this.status = "pending";
       try {
         let { title } = this.formData;
-        title = title
-          .split(" ")
-          .join("-")
-          .toLowerCase();
-        const date = new Date().getTime();
-        const slug = `${title}-${date}`;
-        this.formData.slug = slug;
+        this.formData.slug = this.makeSlug(title);
         this.formData.date = new Intl.DateTimeFormat('pl-PL', { dateStyle: 'long' }).format(new Date());
 
         const res = await fetch("/api/posts", {
